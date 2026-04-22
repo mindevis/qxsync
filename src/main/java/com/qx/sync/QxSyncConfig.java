@@ -2,7 +2,7 @@ package com.qx.sync;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dev.architectury.platform.Platform;
+import net.neoforged.fml.loading.FMLPaths;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +42,7 @@ public final class QxSyncConfig {
 	}
 
 	public static void bootstrap() {
-		Path configFile = Platform.getConfigFolder().resolve("qxsync.json");
+		Path configFile = FMLPaths.CONFIGDIR.get().resolve("qxsync.json");
 		try {
 			if (Files.exists(configFile)) {
 				String json = Files.readString(configFile);
@@ -65,7 +65,7 @@ public final class QxSyncConfig {
 
 	public static void save() {
 		try {
-			Path dir = Platform.getConfigFolder();
+			Path dir = FMLPaths.CONFIGDIR.get();
 			Files.createDirectories(dir);
 			Path configFile = dir.resolve("qxsync.json");
 			Files.writeString(configFile, GSON.toJson(instance), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);

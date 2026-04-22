@@ -7,4 +7,4 @@ alwaysApply: true
 
 - **`VERSION`** (semver, one line) must match **`mod_version`** in root **`gradle.properties`**.
 - On meaningful changes: update **`CHANGELOG.md`**, bump **`VERSION`** / **`mod_version`**, **commit**, **`git push`**, annotated tag **`vX.Y.Z`**, **`git push origin vX.Y.Z`**.
-- **`.github/workflows/`** — CI вызывает **`:fabric:build`** (Fabric Loom) и **`:neoforge:build`** отдельно; артефакты **`*-fabric`** и **`*-neoforge`**; на тег **`v*`** релиз с обоими JAR. **Swap** + урезание Gradle heap на раннере.
+- **`.github/workflows/`** — CI runs **`./gradlew build`** (NeoForge userdev); artifact **`build/libs/*-neoforge-*.jar`**. On tag **`v*`**, release attaches that JAR. **Swap** + reduced Gradle heap on the runner when needed.
